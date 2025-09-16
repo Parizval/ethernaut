@@ -66,16 +66,9 @@ contract Pool is ReentrancyGuard {
         }
         // check to deposit PDT
         if (value_ > 0) {
-            if (
-                PoolToken(depositToken).allowance(msg.sender, address(this)) <
-                value_
-            ) revert InsufficientAllowance();
+            if (PoolToken(depositToken).allowance(msg.sender, address(this)) < value_) revert InsufficientAllowance();
             depositedPDT[msg.sender] += value_;
-            PoolToken(depositToken).transferFrom(
-                msg.sender,
-                address(this),
-                value_
-            );
+            PoolToken(depositToken).transferFrom(msg.sender, address(this), value_);
             _valueToMint += value_;
         }
         if (_valueToMint == 0) revert InvalidDeposit();
@@ -114,10 +107,7 @@ contract Pool is ReentrancyGuard {
 }
 
 contract PoolToken is ERC20, Ownable {
-    constructor(
-        string memory name_,
-        string memory symbol_
-    ) ERC20(name_, symbol_) Ownable(msg.sender) {}
+    constructor(string memory name_, string memory symbol_) ERC20(name_, symbol_) Ownable(msg.sender) {}
 
     function mint(address account, uint256 amount) external onlyOwner {
         _mint(account, amount);
